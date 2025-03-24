@@ -1,4 +1,6 @@
 Hey
+
+
 ```javascript
   let xPos = [100, 200, 300]; // Array der holder alle x positioner af punkterne
   let yPos = [300, 100, 300]; // Array der holder alle y positioner af punkterne
