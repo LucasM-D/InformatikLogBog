@@ -60,6 +60,7 @@ Mit aller første p5.js script skaber en Sierpinski trekant. Generelt fungere sc
 > Den har to arrays, xPos og yPos. De tre strat punkter er hardcoded ind i arraysne, men man kunne hvis man ville gemme musens position for hver gang man klikker og bruge det som start positioner. Scriptet vælger et tilfældigt punkt ved brug af Math.floor(Math.random() * xPos.length); - man kunne også bruge let i = int(random(0, xPos.length)); som er mere stabilt og enklere. Så vælger den et tilfældigt punkt igen ved at bruge det samme logik som sidst. Så finder den midt punktets koordinater ved at lægge y koordinater og x koordinator og dividere med to. Og til sidst tegner den alle punkterne i koordinat arraysene.
 
 #### Første iteration
+<img src="https://github.com/LucasM-D/InformatikLogBog/blob/main/Midpoint-test(example).png" width="300">
 
 ```javascript
   let xs = [100, 200, 300]; 
