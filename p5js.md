@@ -89,7 +89,7 @@ Mit aller første p5.js script skaber en Sierpinski trekant. Generelt fungere sc
 #### Anden iteration
 Denne iteration har jeg faktisk kaldt for det færdie produkt da jeg misforstod opgaven. Opgaven sagde: Scriptet skal udvælge et tilfældigt punkt fra de tre start punkter og kalde det start. scriptet skulle dernæst vælge et tilfældigt punkt af alle punkter, kalde det for slut og finde og tegne midpunktet i mellem disse to punkter. Min opfattelse af opgaven var at den bare skulle finde to tilfældige punkter af alle punkter og tegne midpunktet. Dette ledte til "finale scriptet", eller også kaldt anden iteration.
 
-
+<img src="https://github.com/LucasM-D/InformatikLogBog/blob/main/Midpoint-%22finale%22(example).png" width="300">
 
 ```javascript
 let xs = [100, 200, 300]; 
@@ -124,7 +124,9 @@ function draw()
   }
 }
 ```
+### Christmas-Tree
 
+### DNA Decoder
 
 
 
