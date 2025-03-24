@@ -1,5 +1,6 @@
 Hey
 ![Sierpinski triangle code example](https://github.com/LucasM-D/InformatikLogBog/blob/main/Sierpinski-triangle(example).png)
+![[Sierpinski-triangle(example).png]]
 
 ```javascript
   let xPos = [100, 200, 300]; // Array der holder alle x positioner af punkterne
