@@ -1,5 +1,5 @@
 Hey
-![Sierpinski triangle code example](https://github.com/LucasM-D/InformatikLogBog/blob/main/Sierpinski-triangle(example).png)
+![Sierpinski triangle code example](https://github.com/LucasM-D/InformatikLogBog/blob/main/Sierpinski-triangle(example).png | width=100)
 ![[Sierpinski-triangle(example).png]]
 
 ```javascript
