@@ -1,5 +1,5 @@
 Hey
-
+![image](https://github.com/LucasM-D/InformatikLogBog/blob/main/Screen%20Recording%202025-03-24%20at%2009.07.44.mov)
 
 ```javascript
   let xPos = [100, 200, 300]; // Array der holder alle x positioner af punkterne
