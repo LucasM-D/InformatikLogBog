@@ -1,3 +1,4 @@
+this is my code
 
 ``` javascript
   let xPos = [100, 200, 300]; // Array der holder alle x positioner af punkterne
