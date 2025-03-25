@@ -125,6 +125,74 @@ function draw()
 }
 ```
 ### Christmas-Tree
+<img src="https://github.com/LucasM-D/InformatikLogBog/blob/main/Sierpinski-triangle(example).png" width="300">
+
+```javascript
+function setup() {
+  createCanvas(200, 200); 
+  // Ændre canvas størrelse for at skifte størrelsen af træet
+  gul = color(255, 255, 0);
+  grøn = color(0, 255, 0);
+  rød = color(255, 0, 0);
+  brun = color(150, 75, 0);
+  // Farver :O
+  frameRate(2);
+  textSize(30);
+}
+
+function draw() {
+  background(0);
+  
+  let marginY = height / 6;
+  // Gør dette så træet ikke klipper ind i toppen og så der er lige mellemrum i mellem træet og canvas.
+  let rows = height / 40 - (marginY / 60);
+  // Gør dette  så træet har mængde rækker i forhold til sørrelsen af canvas.
+  let rowHeight = 30;
+  let charWidth = 10;
+  let treeBottomY = marginY + (rows - 1) * rowHeight;
+  // Gør dette til at lokalisere bunden af træet til at placere stubben rigtigt.
+  // Variabler med dynamisk størrelser
+  
+  // Dynamic logic https://chatgpt.com/share/67617831-bbc0-8011-9a80-66c6057f4943
+  
+  // Core logic: https://chatgpt.com/share/67617b0a-4920-8011-8bc8-005e0f128bf8
+
+  for (let k = 0; k < rows; k++) {
+    var numX = (k * 2) + 1;
+    var xOffset = width / 2 - (numX * charWidth) / 2;
+    // Gør dette for at placere træet i midten af canvas
+    
+    for (let x = 0; x < numX; x++) {
+      if (k === 0) {
+        fill(gul);
+      } else if (random(1) < 0.60) {
+        fill(grøn);
+      } else {
+        fill(rød);
+      }
+      // Forskellige farver blade
+      
+      text('*', xOffset + x * charWidth, marginY + k * rowHeight);
+      // Tegner træets blade med automatisk resizeing
+    }
+  }
+
+  fill(brun);
+  let stumpWidth = width / 200;
+  let stumpHeight = rows / 6;
+  let stumpX = width / 2 - (stumpWidth * charWidth) / 2;
+  let spacing = rowHeight;
+  let stumpY = treeBottomY + spacing;
+  // Dynamisk stub størrelse og placering
+
+  for (let r = 0; r < stumpHeight; r++) {
+    for (let c = 0; c < stumpWidth; c++) {
+      text('*', stumpX + c * charWidth, stumpY + r * rowHeight);
+      // Tegner træstub ved korrekt x og y placering
+    }
+  }
+}
+```
 
 ### DNA Decoder
 
