@@ -18,7 +18,7 @@ Loops:
 Shapes:
 - Circle: circle(x, y, diameter);
 - Square: square(x1, y1, x2, y2);
-- 
+- Rectangle: rect(x, y, h, l)
 
 Inputs
 - Buttons
