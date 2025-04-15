@@ -12,8 +12,20 @@ P5.js variabler:
 - Arrays: En liste af variabler [arrayName = [Variable, variable, variable]
 
 Arrays:
-
+// Array variable numbers start from 0
+- // You can add variables to an array:
+  - arrayName.push(variable);
+- // You can get a variable from a array:
+  - arrayName[arrayNumber]
+    
 Loops:
+- // The draw function is a loop
+- // You can deactivate loops:
+  - noLoop();
+- // And activate lopps:
+  - loop();
+- // For loops:
+ - for (let i = start; i < end; i++) {}
 
 Shapes:
 - Circle: circle(x, y, diameter);
@@ -21,9 +33,22 @@ Shapes:
 - Rectangle: rect(x, y, h, l)
 
 Inputs
-- Buttons
-
+- Buttons: button = createButton('text'); button.position(0, 100); button.mousePressed(function);
+- Sliders: slider = createSlider(0, 255, 100); slider.position(0, 100); slider.value();
+- Text fields: input = createInput(''); input.position(0, 100); input.value();
+  
 Vectors:
+- // Create p5.Vector objects.
+  - p1 = createVector(25, 25); point(p1); || point(p2.x, p2.y);
+- // Add velocity to position.
+  - pos.add(vel);
+- p5.Vector([x], [y], [z])
+
+### Flowchart
+Et flowchart er simplificeret overblik af ens kode i form af et diagram. Man bruger flowcharts før man kode for at få et overblik af hvad man skal kode eller man kan lave et flowchart efter at man har kodet for at dokumentere hvordan koden fungerer.
+
+<img width="734" alt="Screenshot 2025-04-14 at 22 50 13" src="https://github.com/user-attachments/assets/e34810f8-5e14-4231-825e-cfaf3e058a8a" />
+*Flowchart af Christmas tree script.*
 
 ## Projects
 
@@ -205,6 +230,132 @@ function draw() {
 ```
 
 ### DNA Decoder
+I forbindelse med en biologi opgave, der handlede om at omkode DNA stringe til RNA stringe lavede jeg dette script til at gøre det for mig. Det grundlæggende koncept er at splitte en string op i array elementer og få nogle if statements til at erstatte baserne med dets komplementære baser. I opgaven skulle man desuden oversætte mRNA-codonerne til deres tilsvarende aminosyrer, men det tilføjede jeg først senere.
+
+```javascript
+let codonTable = {
+  "UUU": "Phe", "UUC": "Phe", "UUA": "Leu", "UUG": "Leu",
+  "CUU": "Leu", "CUC": "Leu", "CUA": "Leu", "CUG": "Leu",
+  "AUU": "Ile", "AUC": "Ile", "AUA": "Ile", "AUG": "Met",
+  "GUU": "Val", "GUC": "Val", "GUA": "Val", "GUG": "Val",
+  "UCU": "Ser", "UCC": "Ser", "UCA": "Ser", "UCG": "Ser",
+  "CCU": "Pro", "CCC": "Pro", "CCA": "Pro", "CCG": "Pro",
+  "ACU": "Thr", "ACC": "Thr", "ACA": "Thr", "ACG": "Thr",
+  "GCU": "Ala", "GCC": "Ala", "GCA": "Ala", "GCG": "Ala",
+  "UAU": "Tyr", "UAC": "Tyr", "UAA": "STOP", "UAG": "STOP",
+  "CAU": "His", "CAC": "His", "CAA": "Gln", "CAG": "Gln",
+  "AAU": "Asn", "AAC": "Asn", "AAA": "Lys", "AAG": "Lys",
+  "GAU": "Asp", "GAC": "Asp", "GAA": "Glu", "GAG": "Glu",
+  "UGU": "Cys", "UGC": "Cys", "UGA": "STOP", "UGG": "Trp",
+  "CGU": "Arg", "CGC": "Arg", "CGA": "Arg", "CGG": "Arg",
+  "AGU": "Ser", "AGC": "Ser", "AGA": "Arg", "AGG": "Arg",
+  "GGU": "Gly", "GGC": "Gly", "GGA": "Gly", "GGG": "Gly"
+};
+
+let mouseClicked = false;
+
+function setup() {
+  createCanvas(200, 200);
+  inputBox = createInput("DNA Code String...").position(25, 50);
+  inputBoxNeutral = createInput("Neutral Code String...").position(25, 100);
+  inputBoxMutation = createInput("Mutated Code String...").position(25, 130);
+}
+
+function draw() {
+  background(220);
+  text("DNA String Translator:", 28, 43)
+  text("Mutation Detector:", 28, 93)
+  text("Check Console For Result", 28, 183)
+}
+
+function mousePressed() {
+  if (mouseClicked == false) {
+    inputBox.value("");
+    inputBoxNeutral.value("");
+    inputBoxMutation.value("");
+    mouseClicked = true;
+  }
+  
+}
+
+function keyPressed() {
+  let code = inputBox.value().toUpperCase();
+  let neutralCode = inputBoxNeutral.value().toUpperCase();
+  let mutatedCode = inputBoxMutation.value().toUpperCase();
+  
+  if (keyCode === ENTER && code) {
+    codeString = [];
+    templateString = [];
+    templateStringLog = [];
+    RNA = [];
+    RNALog = [];
+    codonString = [];
+
+    for (let char of code) {
+      codeString.push(char);
+    }
+
+    for (let i = 0; i < codeString.length; i++) {
+      if (codeString[i] === "A") {
+        templateString.push("T");
+        templateStringLog.push("T ");
+      } else if (codeString[i] === "T") {
+        templateString.push("A");
+        templateStringLog.push("A ");
+      } else if (codeString[i] === "C") {
+        templateString.push("G");
+        templateStringLog.push("G ");
+      } else if (codeString[i] === "G") {
+        templateString.push("C");
+        templateStringLog.push("C ");
+      }
+    }
+
+    for (let i = 0; i < templateString.length; i++) {
+      if (templateString[i] === "A") {
+        RNA.push("U");
+        RNALog.push("U ");
+      } else if (templateString[i] === "T") {
+        RNA.push("A");
+        RNALog.push("A ");
+      } else if (templateString[i] === "C") {
+        RNA.push("G");
+        RNALog.push("G ");
+      } else if (templateString[i] === "G") {
+        RNA.push("C");
+        RNALog.push("C ");
+      }
+    }
 
 
+    for (let i = 0; i < RNA.length; i += 3) {
+      let codonElements = RNA.slice(i, i + 3);
+      let codons = codonElements.join('');
+      codonString.push(codons);
+    }
+
+    let aminoAcidResult = "";
+    for (let i = 0; i < codonString.length; i++) {
+      let codon = codonString[i];
+      let aminoAcidFromTable = codonTable[codon];
+      if (aminoAcidFromTable) {
+        aminoAcidResult += aminoAcidFromTable + " ";
+      }
+    }
+
+    
+    console.log("Code String: ", codeString.join(''));
+    console.log("Template String: ", templateStringLog.join(''));
+    console.log("cRNA String: ", RNALog.join(''));
+    console.log("Codon String:", codonString);
+    console.log("Amino Acids: " + aminoAcidResult);
+
+    if (!aminoAcidResult.includes("STOP")) {
+      console.log("No end amino acid... mutation?");
+    }
+
+    inputBox.value("");
+  }
+}
+```
 
