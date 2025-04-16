@@ -55,7 +55,7 @@ Et flowchart er simplificeret overblik af ens kode i form af et diagram. Man bru
 ### Sierpinski triangle
 Mit aller første p5.js script skaber en Sierpinski trekant. Generelt fungere scriptet ved at vælge et start punkt af de tre start punkter, vælger et andet tilfældigt punkt og tegner en prik ved koordinatet i midten af de to punkter. Dette gør den forevigt.
 
-<img src="https://github.com/LucasM-D/InformatikLogBog/blob/main/Sierpinski-triangle(example).png" width="300">
+<img src="https://raw.githubusercontent.com/LucasM-D/InformatikLogBog/main/Sierpinski-triangle(example).png" width="300px">
 
 ```javascript
   let xPos = [100, 200, 300]; // Array der holder alle x positioner af punkterne
@@ -160,6 +160,8 @@ function draw()
 }
 ```
 ### Christmas-Tree
+Dette script var i relation med jul og julestemningen. Vi fikk til opgave om at lave et script der havde noget julestemning over sig, så jeg valgte at et belyst træ. 
+Scriptet laver et selv-justerende træ med animeret lys, lavet ud af symboler. Vi måtte godt bruge chatGPT, og da dette script var et af mine første brugte jeg chatGPT til at få mine ideer ud på papiret.
 <img width="300" alt="Screenshot 2025-03-25 at 12 23 25" src="https://github.com/user-attachments/assets/539b5ffa-ff46-4da0-9f2d-606c75e248ea" />
 
 ```javascript
@@ -232,6 +234,139 @@ function draw() {
 ### DNA Decoder
 
 I forbindelse med en biologi opgave, der handlede om at omkode DNA stringe til RNA stringe lavede jeg dette script til at gøre det for mig. Det grundlæggende koncept er at splitte en string op i array elementer og få nogle if statements til at erstatte baserne med dets komplementære baser. I opgaven skulle man desuden oversætte mRNA-codonerne til deres tilsvarende aminosyrer, men det tilføjede jeg først senere.
+
+<img width="300" alt="Screenshot 2025-04-16 at 20 47 20" src="https://github.com/user-attachments/assets/b3654587-8aa9-4457-a14c-59ce4cf07706" />
+
+```javascript
+// Tabel over alle mulige codon kombinationer med dets oversat aminosyrer.
+let codonTable = {
+  "UUU": "Phe", "UUC": "Phe", "UUA": "Leu", "UUG": "Leu",
+  "CUU": "Leu", "CUC": "Leu", "CUA": "Leu", "CUG": "Leu",
+  "AUU": "Ile", "AUC": "Ile", "AUA": "Ile", "AUG": "Met",
+  "GUU": "Val", "GUC": "Val", "GUA": "Val", "GUG": "Val",
+  "UCU": "Ser", "UCC": "Ser", "UCA": "Ser", "UCG": "Ser",
+  "CCU": "Pro", "CCC": "Pro", "CCA": "Pro", "CCG": "Pro",
+  "ACU": "Thr", "ACC": "Thr", "ACA": "Thr", "ACG": "Thr",
+  "GCU": "Ala", "GCC": "Ala", "GCA": "Ala", "GCG": "Ala",
+  "UAU": "Tyr", "UAC": "Tyr", "UAA": "STOP", "UAG": "STOP",
+  "CAU": "His", "CAC": "His", "CAA": "Gln", "CAG": "Gln",
+  "AAU": "Asn", "AAC": "Asn", "AAA": "Lys", "AAG": "Lys",
+  "GAU": "Asp", "GAC": "Asp", "GAA": "Glu", "GAG": "Glu",
+  "UGU": "Cys", "UGC": "Cys", "UGA": "STOP", "UGG": "Trp",
+  "CGU": "Arg", "CGC": "Arg", "CGA": "Arg", "CGG": "Arg",
+  "AGU": "Ser", "AGC": "Ser", "AGA": "Arg", "AGG": "Arg",
+  "GGU": "Gly", "GGC": "Gly", "GGA": "Gly", "GGG": "Gly"
+};
+
+let mouseClicked = false;
+
+function setup() {
+  createCanvas(200, 120);
+  inputBox = createInput("DNA Code String...").position(25, 50);
+}
+
+function draw() {
+  background(220);
+  text("DNA String Translator:", 28, 43)
+  text("Check Console For Result", 28, 103)
+}
+
+function mousePressed() {
+  if (mouseClicked == false) {
+    inputBox.value("");
+    mouseClicked = true;
+  }
+  
+}
+
+function keyPressed() {
+  let code = inputBox.value().toUpperCase();
+
+  // Checker om man har skrevet DNA-strengen inde i tekstfeltet og når man trykker enter, så starter oversætningen.
+  if (keyCode === ENTER && code) {
+    codeString = [];
+    templateString = [];
+    templateStringLog = [];
+    RNA = [];
+    RNALog = [];
+    codonString = [];
+
+    // Tager indputtet fra tekstfeltet og indsætter hver character ind i en array.
+    for (let char of code) {
+      codeString.push(char);
+    }
+
+    // Oversætter DNA-strengen om til skabalon-strengen. A bliver til T, C til G og vice versa. 
+    for (let i = 0; i < codeString.length; i++) {
+      if (codeString[i] === "A") {
+        templateString.push("T");
+        templateStringLog.push("T ");
+      } else if (codeString[i] === "T") {
+        templateString.push("A");
+        templateStringLog.push("A ");
+      } else if (codeString[i] === "C") {
+        templateString.push("G");
+        templateStringLog.push("G ");
+      } else if (codeString[i] === "G") {
+        templateString.push("C");
+        templateStringLog.push("C ");
+      }
+    }
+
+    // Oversætter skabalon-strengen til RNA-strengen. A bliver til U, C til G og vice versa.
+    for (let i = 0; i < templateString.length; i++) {
+      if (templateString[i] === "A") {
+        RNA.push("U");
+        RNALog.push("U ");
+      } else if (templateString[i] === "T") {
+        RNA.push("A");
+        RNALog.push("A ");
+      } else if (templateString[i] === "C") {
+        RNA.push("G");
+        RNALog.push("G ");
+      } else if (templateString[i] === "G") {
+        RNA.push("C");
+        RNALog.push("C ");
+      }
+    }
+
+    // Laver RNA-strengen om til codons, ved at joine strengen i grupper af tre baser.
+    for (let i = 0; i < RNA.length; i += 3) {
+      let codonElements = RNA.slice(i, i + 3);
+      let codons = codonElements.join('');
+      codonString.push(codons);
+    }
+
+    // Oversætter RNA-codonsne til aminosyrerne, ved at finde RNA-codonsne i aminosyrer tablen.
+    let aminoAcidResult = "";
+    for (let i = 0; i < codonString.length; i++) {
+      let codon = codonString[i];
+      let aminoAcidFromTable = codonTable[codon];
+      if (aminoAcidFromTable) {
+        aminoAcidResult += aminoAcidFromTable + " ";
+      }
+    }
+
+    // Samler alle arrays og outputter resultaterne i console.
+    console.log("Code String: ", codeString.join(''));
+    console.log("Template String: ", templateStringLog.join(''));
+    console.log("cRNA String: ", RNALog.join(''));
+    console.log("Codon String:", codonString);
+    console.log("Amino Acids: " + aminoAcidResult);
+
+    // Tjekker om det sidste aminosyrer hedder "STOP", ellers kan det tyde på en mutation.
+    if (!aminoAcidResult.includes("STOP")) {
+      console.log("No end amino acid... mutation?");
+    }
+
+    inputBox.value("");
+  }
+}
+```
+Dette script har givet mig mulighed for at udnytte arrays til deres fulde potentiale og kombinere det med viden fra biologi. Det har gjort mig mere erfaren i begge fag og hjulpet mig med bedre at forstå og huske, hvordan opbyggelsen og oversættelsen af DNA-strenge fungerer, så jeg lettere kan forklare det klart, når det er relevant.
+
+### DNA Decoder and Mutation Detection
+Dette script er en forbedret og udvidet version af "DNA Decoder" scriptet. Vi var gået i gang med et nyt emne i biologi om DNA mutationer og fik nogle opgaver for der handlede om at finde mutationerne i DNA-strengen. Opgaven facinerede mig og begyndte at skrive nogle betingelser ned der kunne resultere i at finde mutationerne. Der findes to forskellige DNA mutationer. Den første hedder "punktmutation", hvor et af baserne er blevet erstatet med et andet. Dette er også den svageste af mutationerne da det kun ændre en aminosyrer der alligvel godt kan resultere i den samme aminosyrer som hvis den ikke var mutateret. Længde mutation er den anden og er den værste af dem. Længde mutation er når længden af DNA-strengen bliver ændret. Længdemutation er delt op i to undergrupper; insertion og deletion. Navne siger lidt sig selv, at insertion betyder, at der er tilføjet en base, og deletion betyder, at en base er fjernet fra DNA-strengen.
 
 <img width="300" alt="Screenshot 2025-04-15 at 09 19 13" src="https://github.com/user-attachments/assets/6603fbaf-8dd8-4728-913a-6a70611b599f" />
 
@@ -359,6 +494,125 @@ function keyPressed() {
 
     inputBox.value("");
   }
+  
+  
+  // Checker om man har skrevet DNA-strengen unden mutation og DNA-strengen med mutation inde i de to tekstfelter og når man trykker enter, starter mutation detectionen.
+  if (keyCode === ENTER && neutralCode && mutatedCode) {
+
+      let neutralCodeString = [];
+      let neutralRNACodonsString = [];
+      let neutralRNACodons = [];
+      let neutralRNACodeString = [];
+      let mutatedCodeString = [];
+      let mutatedRNACodonsString = [];
+      let mutatedRNACodons = [];
+      let mutatedRNACodeString = [];
+      let mutatedAminoAcidString = [];
+      let mutationLog = [];
+      let mutationIndices = [];
+      let highlightedMutatedCodon = [];
+      
+      for (let char of neutralCode) {
+        // Hvis char i tekstfeltet er A, T, G eller C bliver de tilføjet til neutralCodeString, for at undgå at man skriver et mellemrum eller komma og at det
+        ødelægger koden.
+        if (char === "A" || char === "T" || char === "G" || char === "C") {
+          neutralCodeString.push(char);
+        }
+      }
+      for (let char of mutatedCode) {
+      // Hvis char er A, T, G eller C bliver det tilføjet til mutatedCodeString arrayet.
+        if (char === "A" || char === "T" || char === "G" || char === "C") {
+          mutatedCodeString.push(char);
+        }
+      }
+
+      // Laver et array hvor man har positionstallet for hvor mutationen er og laver et array hvor mutationen er synligt. 
+      for (let i = 0; i < mutatedCodeString.length; i++) {
+        if (neutralCodeString[i] !== mutatedCodeString[i]) {
+            mutationIndices.push(i);
+            mutationLog.push("[", mutatedCodeString[i], "] ")
+        } else {
+            mutationLog.push(mutatedCodeString[i], " ");
+        }
+      }
+
+      // Oversætter DNA-strengen for at senere at kunne finde aminosyrerne. Her har jeg ikke brug for en skabalonstreng.
+      for (let i = 0; i < neutralCodeString.length; i++) {
+          neutralRNACodeString.push(neutralCodeString[i] === "T" ? "U" : neutralCodeString[i]);
+          mutatedRNACodeString.push(mutatedCodeString[i] === "T" ? "U" : mutatedCodeString[i]);
+      }
+
+      Laver RNA-strengen om til codons.
+      for (let i = 0; i < neutralCodeString.length; i += 3) {
+          neutralRNACodons.push(neutralRNACodeString.slice(i, i + 3).join(''));
+      }
+      for (let i = 0; i < mutatedCodeString.length; i += 3) {
+          mutatedRNACodons.push(mutatedRNACodeString.slice(i, i + 3).join(''));
+      }
+
+      // Gøre den muteret base synlig i form af codons.
+      let mutatedCodonResults = [];
+      for (let i = 0; i < (neutralCodeString.length/3); i =+ 3) {
+        if (neutralRNACodons !== mutatedRNACodons) {
+          mutatedCodonResults.push({ neutral: neutralRNACodons[i], mutated: mutatedRNACodons[i] });
+
+          let highlightedCodon = [];
+          let neutral = neutralRNACodons[i];
+          let mutated = mutatedRNACodons[i];
+
+          for (let j = 0; j < mutated.length; j++) {
+            if (neutral[j] !== mutated[j]) {
+              highlightedCodon.push(`[${mutated[j]}]`);
+            } else {
+              highlightedCodon.push(mutated[j]);
+            }
+          }
+
+          highlightedMutatedCodon.push(highlightedCodon.join(''));
+        }
+      }
+    
+      let neutralAminoAcidResult = "";
+      let mutatedAminoAcidResult = "";
+
+      // Tjekker først om længden af begge DNA-strenge er lige lange, hvis ja så samler den alle arrays og outputter resultaterne i console.
+      if (mutatedCodeString.length == neutralCodeString.length) {
+        console.log("Highlighted Mutation:", mutationLog.join(''));
+        console.log("Base Pair Number", (mutationIndices.slice(0, mutationIndices.length).map(num => num + 1)), " Is Mutated");
+        console.log("Numbers of Mutations:", (mutationIndices.length));
+        for (let i = 0; i < neutralRNACodons.length; i++) {
+          mutatedAminoAcidString.push(codonTable[mutatedRNACodons[i]] || "?");
+        }
+        for (let i = 0; i < mutatedCodonResults.length; i++) {
+          let neutral = mutatedCodonResults[i].neutral;
+          let mutated = mutatedCodonResults[i].mutated;
+
+          let neutralAminoAcid = codonTable[neutral] || "?";
+          let mutatedAminoAcid = codonTable[mutated] || "?";
+          
+          console.log(highlightedMutatedCodon[i], `Neutral: ${neutralAminoAcid}, Mutated: ${mutatedAminoAcid}`);
+
+          if (neutralAminoAcid == mutatedAminoAcid) {
+            console.log("The mutated amino acid is the same as the neutral amino acid");
+          }
+        }
+      // Hvis længden af begge DNA-strenge ikke er lige lange, finder den ud af om det er en insertion eller deletion mutation.
+      } else {
+        if ((mutatedCodeString.length - neutralCodeString.length) < 0) {
+          console.log("Deletion Mutation");
+        } else {
+          console.log("Insertion Mutation");
+        }
+      }
+
+      // En RNA-streng skal have et slut-codon der fortæller ribosomet at kæden er nået til slutningen, hvis ikke ved den ikke hvornår kæden er ved sin slutning.
+      if (mutatedAminoAcidString[mutatedAminoAcidString.length-1] != "STOP") {
+        console.log("No end amino acid... mutation?");
+      }
+      // En RNA-streng skal også have et start-codon (Met) der fortæller ribosomet hvor kæden starter.
+      if (mutatedAminoAcidString[0] != "Met") {
+        console.log("No start amino acid... mutation?");
+      }
+    }
 }
 ```
-
