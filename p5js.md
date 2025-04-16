@@ -160,7 +160,7 @@ function draw()
 }
 ```
 ### Christmas-Tree
-<img src="https://github.com/LucasM-D/InformatikLogBog/blob/main/Sierpinski-triangle(example).png" width="300">
+<img width="300" alt="Screenshot 2025-03-25 at 12 23 25" src="https://github.com/user-attachments/assets/539b5ffa-ff46-4da0-9f2d-606c75e248ea" />
 
 ```javascript
 function setup() {
@@ -230,7 +230,10 @@ function draw() {
 ```
 
 ### DNA Decoder
+
 I forbindelse med en biologi opgave, der handlede om at omkode DNA stringe til RNA stringe lavede jeg dette script til at gøre det for mig. Det grundlæggende koncept er at splitte en string op i array elementer og få nogle if statements til at erstatte baserne med dets komplementære baser. I opgaven skulle man desuden oversætte mRNA-codonerne til deres tilsvarende aminosyrer, men det tilføjede jeg først senere.
+
+<img width="300" alt="Screenshot 2025-04-15 at 09 19 13" src="https://github.com/user-attachments/assets/6603fbaf-8dd8-4728-913a-6a70611b599f" />
 
 ```javascript
 let codonTable = {
