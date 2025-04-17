@@ -162,6 +162,7 @@ function draw()
 ### Christmas-Tree
 Dette script var i relation med jul og julestemningen. Vi fikk til opgave om at lave et script der havde noget julestemning over sig, så jeg valgte at et belyst træ. 
 Scriptet laver et selv-justerende træ med animeret lys, lavet ud af symboler. Vi måtte godt bruge chatGPT, og da dette script var et af mine første brugte jeg chatGPT til at få mine ideer ud på papiret.
+
 <img width="300" alt="Screenshot 2025-03-25 at 12 23 25" src="https://github.com/user-attachments/assets/539b5ffa-ff46-4da0-9f2d-606c75e248ea" />
 
 ```javascript
