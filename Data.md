@@ -5,5 +5,7 @@ For at analysere og behandle data bruger vi for det meste Excel. Microsoft Excel
 
 > Data kan blive opsamlet af en arduino med specifikke moduler.
  
+Blokdiagram
+Blokdiagrammer er til at opdele et system.
 
 ## Data Projekt
