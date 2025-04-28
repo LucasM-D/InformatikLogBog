@@ -514,8 +514,7 @@ function keyPressed() {
       let highlightedMutatedCodon = [];
       
       for (let char of neutralCode) {
-        // Hvis char i tekstfeltet er A, T, G eller C bliver de tilføjet til neutralCodeString, for at undgå at man skriver et mellemrum eller komma og at det
-        ødelægger koden.
+        // Hvis char i tekstfeltet er A, T, G eller C bliver de tilføjet til neutralCodeString, for at undgå at man skriver et mellemrum eller komma og at det ødelægger koden.
         if (char === "A" || char === "T" || char === "G" || char === "C") {
           neutralCodeString.push(char);
         }
@@ -543,7 +542,7 @@ function keyPressed() {
           mutatedRNACodeString.push(mutatedCodeString[i] === "T" ? "U" : mutatedCodeString[i]);
       }
 
-      Laver RNA-strengen om til codons.
+      // Laver RNA-strengen om til codons.
       for (let i = 0; i < neutralCodeString.length; i += 3) {
           neutralRNACodons.push(neutralRNACodeString.slice(i, i + 3).join(''));
       }
@@ -553,8 +552,9 @@ function keyPressed() {
 
       // Gøre den muteret base synlig i form af codons.
       let mutatedCodonResults = [];
-      for (let i = 0; i < (neutralCodeString.length/3); i =+ 3) {
-        if (neutralRNACodons !== mutatedRNACodons) {
+      for (let i = 0; i < (neutralRNACodons.length); i++) {
+        if (neutralRNACodons[i] !== mutatedRNACodons[i]) {
+          console.log(neutralRNACodons[i], mutatedRNACodons[i])
           mutatedCodonResults.push({ neutral: neutralRNACodons[i], mutated: mutatedRNACodons[i] });
 
           let highlightedCodon = [];
@@ -584,7 +584,7 @@ function keyPressed() {
         for (let i = 0; i < neutralRNACodons.length; i++) {
           mutatedAminoAcidString.push(codonTable[mutatedRNACodons[i]] || "?");
         }
-        for (let i = 0; i < mutatedCodonResults.length; i++) {
+        for (let i = 0; i < mutationIndices.length; i++) {
           let neutral = mutatedCodonResults[i].neutral;
           let mutated = mutatedCodonResults[i].mutated;
 
