@@ -8,4 +8,10 @@ For at analysere og behandle data bruger vi for det meste Excel. Microsoft Excel
 Blokdiagram
 Blokdiagrammer er til at opdele et system.
 
+# Data protokol
+8Bit (Otte 1 eller 0): [0100111]
+
+ASCII Tabel.
+\r=13 = ob1101 = oxd
+
 ## Data Projekt
