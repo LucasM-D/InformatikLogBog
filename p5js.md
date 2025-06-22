@@ -32,7 +32,7 @@ Shapes:
 - Square: square(x1, y1, x2, y2);
 - Rectangle: rect(x, y, h, l)
 
-Inputs
+Inputs:
 - Buttons: button = createButton('text'); button.position(0, 100); button.mousePressed(function);
 - Sliders: slider = createSlider(0, 255, 100); slider.position(0, 100); slider.value();
 - Text fields: input = createInput(''); input.position(0, 100); input.value();
@@ -44,7 +44,26 @@ Vectors:
   - pos.add(vel);
 - p5.Vector([x], [y], [z])
 
+Kontrolstrukturer:
+- If/else: Hvis en if-statement er sand går koden inde i if-statementet i gang.
+  - if (coin_crown == true)
+- For loops: Et for-loop er en gentagelse i programmering, der bruges til at køre den samme kode flere gange.
+  - for (let i = 0; i < 10; i++) { console.log(i)}
+- While loops: Hvis et while-statement er sandt gentager den dens indre kode.
+  - while (i <= 5) {console.log(i); i++;}
+
+Operatorer:
+- Tildelingsoperator (=): Tildeler en værdi
+  - x = 5
+- Sammenligningsoperator (==): Sammenligner værdier
+  - if (x == 5) {...}
+- Strikt sammenligningsoperator (===): Sammenligner både værdi og type
+  - let x = "5" (string)
+    if (x === 5 (int) {...} (string is not the same as integer, so false)
+
 ### Flowchart
+- En algoritme er en trinvis fremgangsmåde eller opskrift for at løse et problem eller udføre en opgave. Den beskriver præcis, hvilke handlinger der skal udføres, og i hvilken rækkefølge, for at opnå et specifikt resultat. Algoritmer er grundlæggende for mange områder, herunder computerprogrammering, hvor de udgør kernen i et program, men de findes også i mange andre sammenhænge i vores hverdag
+  
 Et flowchart er simplificeret overblik af ens kode i form af et diagram. Man bruger flowcharts før man kode for at få et overblik af hvad man skal kode eller man kan lave et flowchart efter at man har kodet for at dokumentere hvordan koden fungerer.
 
 <img width="734" alt="Screenshot 2025-04-14 at 22 50 13" src="https://github.com/user-attachments/assets/e34810f8-5e14-4231-825e-cfaf3e058a8a" />
