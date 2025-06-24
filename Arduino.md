@@ -28,6 +28,7 @@ Power pins: Leverer eller modtager strøm (3.3V, 5V, GND, VIN)
 Reset pin: Bruges til at nulstille Arduinoen
 
 Blokdiagram: Et blokdiagram er en skematisk tegning, der bruges til at beskrive den overordnede struktur af et system, ofte et elektronisk kredsløb eller et apparat
+
 ![image](https://github.com/user-attachments/assets/44eae6b6-ceae-48b2-a86f-50a626c65d98)
 
 3-lags-modellen: 3-lags-modellen, også kaldet tre-lags-arkitekturen, er en måde at opdele et IT-system i tre dele: præsentationslaget, logiklaget og datalaget
